@@ -11,470 +11,524 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>天一泓 - 内部系统导航</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
   <style>
-    html,
+    :root {
+      --primary-color: #0066cc;
+      --secondary-color: #f8f9fa;
+      --border-color: #dee2e6;
+      --text-muted: #6c757d;
+      --hover-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
     body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      background-color: #F7F7F7;
+      background-color: var(--secondary-color);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     }
 
-    .container {
-      background-color: #fff;
-
+    .navbar {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
-    .container-header {
-      display: flex;
-      align-items: center;
-      font-size: 14px;
+    .navbar-brand {
       font-weight: bold;
-      height: 40px;
-      padding-left: 10px;
-
+      font-size: 1.5rem;
     }
 
-    .container-body {
-      display: flex;
-      border-top: 1px solid #dfdfdf;
-      padding: 20px 10px 0 10px;
-      /*justify-content: space-between;*/
-      flex-direction: row;
-      flex-wrap: wrap;
+    .section-title {
+      color: #2c3e50;
+      font-weight: 600;
+      margin: 2rem 0 1.5rem 0;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--primary-color);
+      position: relative;
     }
 
-    .container div {
-      display: flex;
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background-color: var(--primary-color);
     }
 
-    .item-block {
-      border: 1px solid #dfdfdf;
-      flex-direction: column;
-      height: 160px;
-      width: 24%;
-      margin-bottom: 20px;
-      margin-right: 10px;
-
+    .system-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      height: 100%;
+      overflow: hidden;
     }
 
-    a:link {
-      /* 超链接正常状态下的样式 */
-      color: #000000;
-      /* 黑色 */
-      text-decoration: none;
-      /* 无下划线 */
+    .system-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--hover-shadow);
     }
 
-    a:visited {
-      /* 访问过的超链接 */
-      color: #000000;
-      /* 黑色 */
-      text-decoration: none;
-      /* 无下划线 */
+    .card-header-custom {
+      padding: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
     }
 
-
-    .item-top {
-      height: 80px;
-      padding: 20px;
-    }
-
-    .item-logo {
-      width: 21%;
+    .system-icon {
+      width: 60px;
       height: 60px;
-      margin-right: 20px;
-
+      object-fit: contain;
+      border-radius: 8px;
     }
 
-    .item-logo img {
-      width: 100%;
-      height: 100%;
-
+    .system-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 0.25rem;
     }
 
-    .item-body {
-      flex-direction: column;
-      width: 79%;
+    .system-description {
+      font-size: 0.875rem;
+      color: var(--text-muted);
     }
 
-    .item-bottom {
-      height: 80px;
-      justify-content: space-around;
-      align-items: center;
-      color: #888888;
-      background-color: #F7F7F7;
-      font-size: 13px;
-      flex-wrap: wrap;
-      align-content: center;
+    .card-footer-custom {
+      background-color: #f8f9fa;
+      padding: 1rem;
+      border-top: 1px solid var(--border-color);
     }
 
-    .title {
-      font-size: 16px;
-      font-weight: bold;
-      padding-bottom: 10px;
+    .btn-system {
+      font-size: 0.875rem;
+      padding: 0.5rem 1rem;
+      margin: 0.125rem;
+      border-radius: 20px;
+      transition: all 0.3s ease;
     }
 
-    .notice {
-      font-size: 12px;
-      color: #888;
+    .btn-system:hover {
+      transform: scale(1.05);
     }
 
-    .divider {
-      height: 20px;
-      width: 1px;
-      background-color: #dfdfdf;
+    .footer {
+      background-color: #2c3e50;
+      color: white;
+      padding: 2rem 0;
+      margin-top: 3rem;
     }
 
-    .item-bottom-multirow {
-      height: 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      color: #888888;
-      background-color: #F7F7F7;
-      font-size: 13px;
-      padding: 2px 0;
+    /* 响应式调整 */
+    @media (max-width: 768px) {
+      .system-card {
+        margin-bottom: 1rem;
+      }
+      
+      .system-icon {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .system-title {
+        font-size: 1rem;
+      }
     }
 
-    .button-row {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      width: 100%;
-      height: 18px;
+    /* 动画效果 */
+    .fade-in {
+      animation: fadeIn 0.6s ease-in;
     }
 
-    .button-row a {
-      flex: 1;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-    }
-
-    .button-row .divider {
-      height: 12px;
-      width: 1px;
-      background-color: #dfdfdf;
-      margin: 0 2px;
-      flex-shrink: 0;
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
 
-<body style="padding: 10px">
-  <!-- 项目管理与开发运维系统 -->
-  <div class="container">
-    <div class="container-header">项目管理与开发运维系统</div>
-    <div class="container-body">
-      <div class="item-block">
-        <a href="https://tyh.pingcode.com/pjm/projects/AICX" target="_blank">
-          <div class="item-top">
-            <div class="item-logo"><img src="img/ops.png"></div>
-            <div class="item-body">
-              <span class="title">PingCode</span>
-              <span class="notice">需求和任务管理平台</span>
-            </div>
-          </div>
-        </a>
-        <div class="item-bottom">
-          <a href="https://tyh.pingcode.com/pjm/projects/AICX" target="_blank">
-            <div>项目管理</div>
-          </a>
-        </div>
-      </div>
-
-      <div class="item-block">
-        <a href="http://gitlab.praise.com/" target="_blank">
-          <div class="item-top">
-            <div class="item-logo"><img src="img/gitlab.png"></div>
-            <div class="item-body">
-              <span class="title">GitLab</span>
-              <span class="notice">代码版本管理</span>
-            </div>
-          </div>
-        </a>
-        <div class="item-bottom">
-          <a href="http://gitlab.praise.com/" target="_blank">
-            <div>代码仓库</div>
-          </a>
-        </div>
-      </div>
-
-      <div class="item-block">
-        <a href="https://ks.tyhtest.com" target="_blank">
-          <div class="item-top">
-            <div class="item-logo"><img src="img/ops.png"></div>
-            <div class="item-body">
-              <span class="title">KubeSphere</span>
-              <span class="notice">容器平台部署系统</span>
-            </div>
-          </div>
-        </a>
-        <div class="item-bottom-multirow">
-          <div class="button-row">
-            <a href="https://ks.tyhtest.com/platform-dev/clusters/skyline-dev/devops/skyline-aifnztw/pipelines?name=dify" target="_blank">
-              <div>部署流水线</div>
-            </a>
-            <div class="divider"></div>
-            <a href="https://ks.tyhtest.com/platform-dev/clusters/skyline-dev/projects/skyline-ai/services?name=dify" target="_blank">
-              <div>服务管理</div>
-            </a>
-          </div>
-          <div class="button-row">
-            <a href="https://ks.tyhtest.com/platform-dev/clusters/skyline-dev/devops/skyline-aifnztw/pipelines/skyline-ai-dify-work-beat/activity" target="_blank">
-              <div>beat</div>
-            </a>
-            <div class="divider"></div>
-            <a href="https://ks.tyhtest.com/platform-dev/clusters/skyline-dev/devops/skyline-aifnztw/pipelines/skyline-ai-dify-api/activity" target="_blank">
-              <div>api</div>
-            </a>
-            <div class="divider"></div>
-            <a href="https://ks.tyhtest.com/platform-dev/clusters/skyline-dev/devops/skyline-aifnztw/pipelines/skyline-api-dify-worker/activity" target="_blank">
-              <div>worker</div>
-            </a>
-            <div class="divider"></div>
-            <a href="https://ks.tyhtest.com/platform-dev/clusters/skyline-dev/devops/skyline-aifnztw/pipelines/skyline-ai-dify-web/activity" target="_blank">
-              <div>web</div>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="item-block">
-        <a href="http://jump-dev.skyline.com/ui/#/workbench/home" target="_blank">
-          <div class="item-top">
-            <div class="item-logo"><img src="img/jumpserver.png"></div>
-            <div class="item-body">
-              <span class="title">堡垒机系统</span>
-              <span class="notice">安全登录与运维管理</span>
-            </div>
-          </div>
-        </a>
-        <div class="item-bottom">
-          <a href="http://jump-dev.skyline.com/ui/#/workbench/home" target="_blank">
-            <div>开发环境</div>
-          </a>
-          <div class="divider"></div>
-          <a href="http://jumpserver.skyline.com/ui/#/tickets/my-tickets" target="_blank">
-            <div>生产环境</div>
-          </a>
-          <div class="divider"></div>
-          <a href="http://o2.skyline.com/web/logs?stream_type=logs&stream=K8sLogs&period=15m&refresh=0&sql_mode=true&query=U0VMRUNUICogRlJPTSAiSzhzTG9ncyIgd2hlcmUga3ViZXJuZXRlc19jb250YWluZXJfbmFtZSA9ICdza3lsaW5lLWFpLWRpZnktYXBpJyBPUkRFUiBCWSBfdGltZXN0YW1wIERFU0M.&defined_schemas=user_defined_schema&org_identifier=default&quick_mode=true&show_histogram=true" target="_blank">
-            <div>生产日志</div>
-          </a>
-        </div>
-      </div>
-
+<body>
+  <!-- 导航栏 -->
+  <nav class="navbar navbar-dark">
+    <div class="container">
+      <span class="navbar-brand mb-0 h1">
+        <i class="bi bi-grid-3x3-gap-fill me-2"></i>
+        天一泓 - 内部系统导航
+      </span>
     </div>
-  </div>
+  </nav>
 
-  <!-- AI平台系统 -->
-  <div class="container">
-    <div class="container-header">AI平台系统</div>
-    <div class="container-body">
-      <div class="item-block">
-        <a href="http://skyline-ai-sso-chat-web.tyhdev.com" target="_blank">
-          <div class="item-top">
-            <div class="item-logo"><img src="img/ops.png"></div>
-            <div class="item-body">
-              <span class="title">AIChat 对话</span>
-              <span class="notice">AI对话平台</span>
+  <div class="container mt-4">
+    <!-- 项目管理与开发运维系统 -->
+    <h2 class="section-title">
+      <i class="bi bi-kanban text-primary me-2"></i>
+      项目管理与开发运维系统
+    </h2>
+    <div class="row g-4">
+      <!-- PingCode -->
+      <div class="col-lg-3 col-md-6 fade-in">
+        <div class="system-card">
+          <div class="card-header-custom">
+            <div class="d-flex align-items-center">
+              <img src="img/ops.png" alt="PingCode" class="system-icon me-3">
+              <div>
+                <h5 class="system-title mb-1">PingCode</h5>
+                <p class="system-description mb-0">需求和任务管理平台</p>
+              </div>
             </div>
           </div>
-        </a>
-        <div class="item-bottom">
-          <a href="http://skyline-ai-sso-chat-web.tyhdev.com" target="_blank">
-            <div>开发环境</div>
-          </a>
-          <div class="divider"></div>
-          <a href="http://aichat.tyhsys.com" target="_blank">
-            <div>生产环境</div>
-          </a>
+          <div class="card-footer-custom">
+            <a href="https://tyh.pingcode.com/pjm/projects/AICX" target="_blank" class="btn btn-primary btn-system w-100">
+              <i class="bi bi-box-arrow-up-right me-1"></i>项目管理
+            </a>
+          </div>
         </div>
       </div>
 
-      <div class="item-block">
-        <a href="http://skyline-ai-dify-web.tyhdev.com" target="_blank">
-          <div class="item-top">
-            <div class="item-logo"><img src="img/ops.png"></div>
-            <div class="item-body">
-              <span class="title">Dify 灵犀平台</span>
-              <span class="notice">AI工作流平台</span>
+      <!-- GitLab -->
+      <div class="col-lg-3 col-md-6 fade-in">
+        <div class="system-card">
+          <div class="card-header-custom">
+            <div class="d-flex align-items-center">
+              <img src="img/gitlab.png" alt="GitLab" class="system-icon me-3">
+              <div>
+                <h5 class="system-title mb-1">GitLab</h5>
+                <p class="system-description mb-0">代码版本管理</p>
+              </div>
             </div>
           </div>
-        </a>
-        <div class="item-bottom">
-          <a href="http://skyline-ai-dify-web.tyhdev.com" target="_blank">
-            <div>开发无鉴权</div>
-          </a>
-          <div class="divider"></div>
-          <a href="http://skyline-ai-sso-gateway-01.tyhdev.com" target="_blank">
-            <div>开发带鉴权</div>
-          </a>
-          <div class="divider"></div>
-          <a href="http://aichat-engine.tyhsys.com" target="_blank">
-            <div>生产环境</div>
-          </a>
+          <div class="card-footer-custom">
+            <a href="http://gitlab.praise.com/" target="_blank" class="btn btn-primary btn-system w-100">
+              <i class="bi bi-box-arrow-up-right me-1"></i>代码仓库
+            </a>
+          </div>
         </div>
       </div>
 
-      <div class="item-block">
-        <a href="http://aichat-toolbox.tyhsys.com" target="_blank">
-          <div class="item-top">
-            <div class="item-logo"><img src="img/ops.png"></div>
-            <div class="item-body">
-              <span class="title">AI工具箱</span>
-              <span class="notice">AI工具导航平台</span>
+      <!-- KubeSphere -->
+      <div class="col-lg-3 col-md-6 fade-in">
+        <div class="system-card">
+          <div class="card-header-custom">
+            <div class="d-flex align-items-center">
+              <img src="img/ops.png" alt="KubeSphere" class="system-icon me-3">
+              <div>
+                <h5 class="system-title mb-1">KubeSphere</h5>
+                <p class="system-description mb-0">容器平台部署系统</p>
+              </div>
             </div>
           </div>
-        </a>
-        <div class="item-bottom">
-          <a href="http://skyline-ai-tools-navigate.tyhdev.com" target="_blank">
-            <div>开发环境</div>
-          </a>
-          <div class="divider"></div>
-          <a href="http://aichat-toolbox.tyhsys.com" target="_blank">
-            <div>生产环境</div>
-          </a>
+          <div class="card-footer-custom">
+            <div class="d-grid gap-2">
+              <a href="https://ks.tyhtest.com/platform-dev/clusters/skyline-dev/devops/skyline-aifnztw/pipelines?name=dify" target="_blank" class="btn btn-outline-primary btn-sm">
+                部署流水线
+              </a>
+              <a href="https://ks.tyhtest.com/platform-dev/clusters/skyline-dev/projects/skyline-ai/services?name=dify" target="_blank" class="btn btn-outline-primary btn-sm">
+                服务管理
+              </a>
+              <div class="btn-group btn-group-sm" role="group">
+                <a href="https://ks.tyhtest.com/platform-dev/clusters/skyline-dev/devops/skyline-aifnztw/pipelines/skyline-ai-dify-work-beat/activity" target="_blank" class="btn btn-outline-secondary">beat</a>
+                <a href="https://ks.tyhtest.com/platform-dev/clusters/skyline-dev/devops/skyline-aifnztw/pipelines/skyline-ai-dify-api/activity" target="_blank" class="btn btn-outline-secondary">api</a>
+                <a href="https://ks.tyhtest.com/platform-dev/clusters/skyline-dev/devops/skyline-aifnztw/pipelines/skyline-api-dify-worker/activity" target="_blank" class="btn btn-outline-secondary">worker</a>
+                <a href="https://ks.tyhtest.com/platform-dev/clusters/skyline-dev/devops/skyline-aifnztw/pipelines/skyline-ai-dify-web/activity" target="_blank" class="btn btn-outline-secondary">web</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="item-block">
-        <a href="http://skyline-ai-db-gpt-service.tyhdev.com" target="_blank">
-          <div class="item-top">
-            <div class="item-logo"><img src="img/ops.png"></div>
-            <div class="item-body">
-              <span class="title">DB-GPT</span>
-              <span class="notice">数据库智能问答</span>
+      <!-- 堡垒机系统 -->
+      <div class="col-lg-3 col-md-6 fade-in">
+        <div class="system-card">
+          <div class="card-header-custom">
+            <div class="d-flex align-items-center">
+              <img src="img/jumpserver.png" alt="堡垒机系统" class="system-icon me-3">
+              <div>
+                <h5 class="system-title mb-1">堡垒机系统</h5>
+                <p class="system-description mb-0">安全登录与运维管理</p>
+              </div>
             </div>
           </div>
-        </a>
-        <div class="item-bottom">
-          <a href="http://skyline-ai-db-gpt-service.tyhdev.com" target="_blank">
-            <div>开发环境</div>
-          </a>
-          <div class="divider"></div>
-          <a href="http://aitchat-dbgpt.tyhsys.com" target="_blank">
-            <div>生产环境</div>
-          </a>
-        </div>
-      </div>
-
-      <div class="item-block">
-        <a href="http://skyline-ai-kunlun-assistant-config-ui.tyhdev.com" target="_blank">
-          <div class="item-top">
-            <div class="item-logo"><img src="img/ops.png"></div>
-            <div class="item-body">
-              <span class="title">Kunlun 昆仑</span>
-              <span class="notice">智能助手配置平台</span>
+          <div class="card-footer-custom">
+            <div class="d-grid gap-2">
+              <a href="http://jump-dev.skyline.com/ui/#/workbench/home" target="_blank" class="btn btn-outline-primary btn-sm">开发环境</a>
+              <a href="http://jumpserver.skyline.com/ui/#/tickets/my-tickets" target="_blank" class="btn btn-outline-primary btn-sm">生产环境</a>
+              <a href="http://o2.skyline.com/web/logs?stream_type=logs&stream=K8sLogs&period=15m&refresh=0&sql_mode=true&query=U0VMRUNUICogRlJPTSAiSzhzTG9ncyIgd2hlcmUga3ViZXJuZXRlc19jb250YWluZXJfbmFtZSA9ICdza3lsaW5lLWFpLWRpZnktYXBpJyBPUkRFUiBCWSBfdGltZXN0YW1wIERFU0M.&defined_schemas=user_defined_schema&org_identifier=default&quick_mode=true&show_histogram=true" target="_blank" class="btn btn-outline-primary btn-sm">生产日志</a>
             </div>
           </div>
-        </a>
-        <div class="item-bottom">
-          <a href="http://skyline-ai-kunlun-assistant-config-ui.tyhdev.com" target="_blank">
-            <div>开发环境</div>
-          </a>
-          <div class="divider"></div>
-          <a href="http://aiagent-config.tyhsys.com" target="_blank">
-            <div>生产环境</div>
-          </a>
-        </div>
-      </div>
-
-      <div class="item-block">
-        <a href="http://skyline-ai-superset-finance.tyhdev.com" target="_blank">
-          <div class="item-top">
-            <div class="item-logo"><img src="img/ops.png"></div>
-            <div class="item-body">
-              <span class="title">Finance 财务</span>
-              <span class="notice">财务数据分析平台</span>
-            </div>
-          </div>
-        </a>
-        <div class="item-bottom">
-          <a href="http://skyline-ai-superset-finance.tyhdev.com" target="_blank">
-            <div>开发环境</div>
-          </a>
-          <div class="divider"></div>
-          <a href="http://skyline-ai-superset-finance-dev.tyhsys.com" target="_blank">
-            <div>生产环境</div>
-          </a>
-        </div>
-      </div>
-
-      <div class="item-block">
-        <a href="https://skyline-ai-sso-admin.tyhdev.com/maxkey-mgt" target="_blank">
-          <div class="item-top">
-            <div class="item-logo"><img src="img/ldap.svg"></div>
-            <div class="item-body">
-              <span class="title">SSO登录系统</span>
-              <span class="notice">统一身份认证</span>
-            </div>
-          </div>
-        </a>
-        <div class="item-bottom">
-          <a href="https://skyline-ai-sso.tyhdev.com/maxkey" target="_blank">
-            <div>用户登录</div>
-          </a>
-          <div class="divider"></div>
-          <a href="https://skyline-ai-sso-admin.tyhdev.com/maxkey-mgt" target="_blank">
-            <div>管理后台</div>
-          </a>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- 生活服务系统 -->
-  <div class="container">
-    <div class="container-header">生活服务系统</div>
-    <div class="container-body">
-      <!-- 预留点餐系统位置 -->
-      <div class="item-block">
-        <div class="item-top">
-          <div class="item-logo"><img src="img/ops.png"></div>
-          <div class="item-body">
-            <span class="title">点餐系统1</span>
-            <span class="notice">员工点餐服务</span>
+    <!-- AI平台系统 -->
+    <h2 class="section-title">
+      <i class="bi bi-robot text-primary me-2"></i>
+      AI平台系统
+    </h2>
+    <div class="row g-4">
+      <!-- AIChat 对话 -->
+      <div class="col-lg-3 col-md-6 fade-in">
+        <div class="system-card">
+          <div class="card-header-custom">
+            <div class="d-flex align-items-center">
+              <img src="img/ops.png" alt="AIChat 对话" class="system-icon me-3">
+              <div>
+                <h5 class="system-title mb-1">AIChat 对话</h5>
+                <p class="system-description mb-0">AI对话平台</p>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="item-bottom">
-          <div>待添加链接</div>
+          <div class="card-footer-custom">
+            <div class="d-grid gap-2">
+              <a href="http://skyline-ai-sso-chat-web.tyhdev.com" target="_blank" class="btn btn-outline-primary btn-sm">开发环境</a>
+              <a href="http://aichat.tyhsys.com" target="_blank" class="btn btn-outline-primary btn-sm">生产环境</a>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="item-block">
-        <div class="item-top">
-          <div class="item-logo"><img src="img/ops.png"></div>
-          <div class="item-body">
-            <span class="title">点餐系统2</span>
-            <span class="notice">员工点餐服务</span>
+      <!-- Dify 灵犀平台 -->
+      <div class="col-lg-3 col-md-6 fade-in">
+        <div class="system-card">
+          <div class="card-header-custom">
+            <div class="d-flex align-items-center">
+              <img src="img/ops.png" alt="Dify 灵犀平台" class="system-icon me-3">
+              <div>
+                <h5 class="system-title mb-1">Dify 灵犀平台</h5>
+                <p class="system-description mb-0">AI工作流平台</p>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="item-bottom">
-          <div>待添加链接</div>
+          <div class="card-footer-custom">
+            <div class="d-grid gap-2">
+              <a href="http://skyline-ai-dify-web.tyhdev.com" target="_blank" class="btn btn-outline-primary btn-sm">开发无鉴权</a>
+              <a href="http://skyline-ai-sso-gateway-01.tyhdev.com" target="_blank" class="btn btn-outline-primary btn-sm">开发带鉴权</a>
+              <a href="http://aichat-engine.tyhsys.com" target="_blank" class="btn btn-outline-primary btn-sm">生产环境</a>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="item-block">
-        <div class="item-top">
-          <div class="item-logo"><img src="img/ops.png"></div>
-          <div class="item-body">
-            <span class="title">点餐系统3</span>
-            <span class="notice">员工点餐服务</span>
+      <!-- AI工具箱 -->
+      <div class="col-lg-3 col-md-6 fade-in">
+        <div class="system-card">
+          <div class="card-header-custom">
+            <div class="d-flex align-items-center">
+              <img src="img/ops.png" alt="AI工具箱" class="system-icon me-3">
+              <div>
+                <h5 class="system-title mb-1">AI工具箱</h5>
+                <p class="system-description mb-0">AI工具导航平台</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer-custom">
+            <div class="d-grid gap-2">
+              <a href="http://skyline-ai-tools-navigate.tyhdev.com" target="_blank" class="btn btn-outline-primary btn-sm">开发环境</a>
+              <a href="http://aichat-toolbox.tyhsys.com" target="_blank" class="btn btn-outline-primary btn-sm">生产环境</a>
+            </div>
           </div>
         </div>
-        <div class="item-bottom">
-          <div>待添加链接</div>
+      </div>
+
+      <!-- DB-GPT -->
+      <div class="col-lg-3 col-md-6 fade-in">
+        <div class="system-card">
+          <div class="card-header-custom">
+            <div class="d-flex align-items-center">
+              <img src="img/ops.png" alt="DB-GPT" class="system-icon me-3">
+              <div>
+                <h5 class="system-title mb-1">DB-GPT</h5>
+                <p class="system-description mb-0">数据库智能问答</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer-custom">
+            <div class="d-grid gap-2">
+              <a href="http://skyline-ai-db-gpt-service.tyhdev.com" target="_blank" class="btn btn-outline-primary btn-sm">开发环境</a>
+              <a href="http://aitchat-dbgpt.tyhsys.com" target="_blank" class="btn btn-outline-primary btn-sm">生产环境</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kunlun 昆仑 -->
+      <div class="col-lg-3 col-md-6 fade-in">
+        <div class="system-card">
+          <div class="card-header-custom">
+            <div class="d-flex align-items-center">
+              <img src="img/ops.png" alt="Kunlun 昆仑" class="system-icon me-3">
+              <div>
+                <h5 class="system-title mb-1">Kunlun 昆仑</h5>
+                <p class="system-description mb-0">智能助手配置平台</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer-custom">
+            <div class="d-grid gap-2">
+              <a href="http://skyline-ai-kunlun-assistant-config-ui.tyhdev.com" target="_blank" class="btn btn-outline-primary btn-sm">开发环境</a>
+              <a href="http://aiagent-config.tyhsys.com" target="_blank" class="btn btn-outline-primary btn-sm">生产环境</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Finance 财务 -->
+      <div class="col-lg-3 col-md-6 fade-in">
+        <div class="system-card">
+          <div class="card-header-custom">
+            <div class="d-flex align-items-center">
+              <img src="img/ops.png" alt="Finance 财务" class="system-icon me-3">
+              <div>
+                <h5 class="system-title mb-1">Finance 财务</h5>
+                <p class="system-description mb-0">财务数据分析平台</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer-custom">
+            <div class="d-grid gap-2">
+              <a href="http://skyline-ai-superset-finance.tyhdev.com" target="_blank" class="btn btn-outline-primary btn-sm">开发环境</a>
+              <a href="http://skyline-ai-superset-finance-dev.tyhsys.com" target="_blank" class="btn btn-outline-primary btn-sm">生产环境</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SSO登录系统 -->
+      <div class="col-lg-3 col-md-6 fade-in">
+        <div class="system-card">
+          <div class="card-header-custom">
+            <div class="d-flex align-items-center">
+              <img src="img/ldap.svg" alt="SSO登录系统" class="system-icon me-3">
+              <div>
+                <h5 class="system-title mb-1">SSO登录系统</h5>
+                <p class="system-description mb-0">统一身份认证</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer-custom">
+            <div class="d-grid gap-2">
+              <a href="https://skyline-ai-sso.tyhdev.com/maxkey" target="_blank" class="btn btn-outline-primary btn-sm">用户登录</a>
+              <a href="https://skyline-ai-sso-admin.tyhdev.com/maxkey-mgt" target="_blank" class="btn btn-outline-primary btn-sm">管理后台</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 生活服务系统 -->
+    <h2 class="section-title">
+      <i class="bi bi-shop text-primary me-2"></i>
+      生活服务系统
+    </h2>
+    <div class="row g-4">
+      <!-- 点餐系统1 -->
+      <div class="col-lg-3 col-md-6 fade-in">
+        <div class="system-card">
+          <div class="card-header-custom">
+            <div class="d-flex align-items-center">
+              <img src="img/ops.png" alt="点餐系统1" class="system-icon me-3">
+              <div>
+                <h5 class="system-title mb-1">点餐系统1</h5>
+                <p class="system-description mb-0">员工点餐服务</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer-custom">
+            <button class="btn btn-secondary btn-system w-100" disabled>
+              <i class="bi bi-clock me-1"></i>待添加链接
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 点餐系统2 -->
+      <div class="col-lg-3 col-md-6 fade-in">
+        <div class="system-card">
+          <div class="card-header-custom">
+            <div class="d-flex align-items-center">
+              <img src="img/ops.png" alt="点餐系统2" class="system-icon me-3">
+              <div>
+                <h5 class="system-title mb-1">点餐系统2</h5>
+                <p class="system-description mb-0">员工点餐服务</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer-custom">
+            <button class="btn btn-secondary btn-system w-100" disabled>
+              <i class="bi bi-clock me-1"></i>待添加链接
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 点餐系统3 -->
+      <div class="col-lg-3 col-md-6 fade-in">
+        <div class="system-card">
+          <div class="card-header-custom">
+            <div class="d-flex align-items-center">
+              <img src="img/ops.png" alt="点餐系统3" class="system-icon me-3">
+              <div>
+                <h5 class="system-title mb-1">点餐系统3</h5>
+                <p class="system-description mb-0">员工点餐服务</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer-custom">
+            <button class="btn btn-secondary btn-system w-100" disabled>
+              <i class="bi bi-clock me-1"></i>待添加链接
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- 页脚 -->
+  <footer class="footer mt-5">
+    <div class="container text-center">
+      <p class="mb-0">&copy; 2025 天一泓内部系统导航. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- 添加滚动动画 -->
+  <script>
+    // 页面加载动画
+    document.addEventListener('DOMContentLoaded', function() {
+      const cards = document.querySelectorAll('.fade-in');
+      cards.forEach((card, index) => {
+        setTimeout(() => {
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }, index * 100);
+      });
+    });
+
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>
